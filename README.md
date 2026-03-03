@@ -1,6 +1,7 @@
 # DADS7202-DeepLearning
 
 # Homework :
+Code and Dataset : https://drive.google.com/drive/folders/1lR14cJw8nPjcrKOdRpuiA21etvh8kiD8
 
 # Drafted presentation :
 1.https://docs.google.com/presentation/d/1o1XLUmhLWX0dUNuA74P47rhGEte4Ke7nrmV8SKxeX1c/edit?slide=id.p1#slide=id.p1
