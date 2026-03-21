@@ -254,13 +254,13 @@ Pre-trained Model Performance Comparison (ImageNet-1K)
 > **ตารางที่ 3.4-3** ตารางแสดงการ Add/Freeze/Unfreeze ของโมเดล ResNet18
 > |Layer Type| In-Features | Out-Features | Activation/Regularization| Freeze | Unfreeze | Remark |
 > |---|---|---|---|---|---|---|
-> |Feature Layer<br>Original|Original |Original|Original|✓|-|---|
+> |Feature Layer<br>Original|Original |Original|Original|✓|-|Unfreeze เฉพาะ Layer4|
 > |AdaptiveAvgPool2d|- |-|---|---|✓|---|
-> |Linear Layer 1|64 |64|ReLu|---|✓|
-> |Dropout 1| - | - |0.2 |---|✓|
-> |Linear Layer 2|64|128|ReLu|---|✓|
-> |Dropout 2|-|-|0.2|---|✓|
-> |Linear Layer 3|128|256|4|---|✓|
+> |Linear Layer 1|512 |1024|ReLu|---|✓|---|
+> |Dropout 1| - | - |0.3 |---|✓|---|
+> |Linear Layer 2|1024|1024|ReLu|---|✓|---|
+> |Dropout 2|-|-|0.3|---|✓|---|
+> |Linear Layer 3|1024|4|--|---|✓|---|
 
 > **ตารางที่ 3.4-4** ตารางแสดงการ Add/Freeze/Unfreeze ของโมเดล ConvNeXt-Tiny
 > |Layer Type| In-Features | Out-Features | Activation/Regularization| Freeze | Unfreeze |Remark|
