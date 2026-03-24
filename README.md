@@ -1,22 +1,16 @@
-# DADS7202-DeepLearning
-
-# Homework :
-Code and Dataset : https://drive.google.com/drive/folders/1lR14cJw8nPjcrKOdRpuiA21etvh8kiD8
-
-
 # DADS7202_Group Assignment Deep Learning for "Pizza topping"
 
-> Objective: **`What do you use to train an image classifier
-> with our custom image dataset?`**
+* Code and Dataset : https://drive.google.com/drive/folders/1lR14cJw8nPjcrKOdRpuiA21etvh8kiD8
+* 1 page : https://www.canva.com/design/DAHET4c4MDs/5CRiYBxluVMAk9hedHg8fA/edit?utm_content=DAHET4c4MDs&utm_campaign=designshare&utm_medium=link2&utm_source=sharebutton
 
 # ✨High Light
-🏆 ConvNeXt-Tiny คือโมเดลที่มีประสิทธิภาพสูงสุด: จากการทดสอบเปรียบเทียบ 4 โมเดลพบว่า ConvNeXt-Tiny ให้ค่า F1-score สูงสุดที่ 81.4% โดยผลการทดสอบทางสถิติ (Dunn's Test) ยืนยันว่ามีประสิทธิภาพเหนือกว่า EfficientNetB0 อย่างมีนัยสำคัญ ($p < 0.05$) ในขณะที่กลุ่มโมเดลประสิทธิภาพสูงรองลงมาคือ ResNet18 และ MobileNet V3L ตามลำดับ
+🏆 ConvNeXt-Tiny คือโมเดลที่มีประสิทธิภาพสูงสุด: จากการทดสอบเปรียบเทียบ 4 โมเดลพบว่า ConvNeXt-Tiny ให้ค่า F1-score สูงสุดที่ 81.4% โดยผลการทดสอบทางสถิติ (Dunn's Test) ยืนยันว่ามีประสิทธิภาพเหนือกว่า EfficientNetB0 อย่างมีนัยสำคัญ ($p < 0.05$) ในขณะที่กลุ่มโมเดลประสิทธิภาพสูงรองลงมาคือ ResNet18 และ MobileNet V3 ตามลำดับ
 
-🍕 ความท้าทายของคลาส Margherita: ทุกโมเดลประสบปัญหาในการจำแนกหน้า Margherita โดยให้ค่า F1-score ต่ำสุด (เฉลี่ย 59% - 77%) เนื่องจากปัญหา Feature Overlap ของวัตถุดิบ เช่น ซอสมะเขือเทศที่มีโทนสีแดงคล้ายแผ่น Pepperoni และการกระจายตัวของชีสที่คล้ายคลึงกับหน้าอื่น รวมถึงพบ Noise ในข้อมูล (รูปที่ไม่ใช่พิซซ่า) ซึ่งต้องแก้ไขด้วยการทำ Data Cleaning และเพิ่ม Augmentation ที่เน้นจุดโฟกัสมากขึ้น
+🍕 คลาส Margherita: ทุกโมเดลประสบปัญหาในการจำแนกหน้า Margherita โดยให้ค่า F1-score ต่ำสุด (เฉลี่ย 59% - 77%) เนื่องจากปัญหา Feature Overlap ของวัตถุดิบ เช่น ซอสมะเขือเทศที่มีโทนสีแดงคล้ายแผ่น Pepperoni และการกระจายตัวของชีสที่คล้ายคลึงกับหน้าอื่น รวมถึงพบ Noise ในข้อมูล (รูปที่ไม่ใช่พิซซ่า) ซึ่งต้องแก้ไขด้วยการทำ Data Cleaning และเพิ่ม Augmentation ที่เน้นจุดโฟกัสมากขึ้น
 
-⚙️ กลยุทธ์การปรับแต่ง Classifier ที่เข้มข้น: เพื่อเพิ่มความสามารถในการเรียนรู้ลักษณะ Topping ที่ซับซ้อน ได้มีการปรับโครงสร้างส่วนท้ายของโมเดล (Fine-tuning) โดยเพิ่มความลึกของ Linear Layer (เช่น MobileNet เปลี่ยนจาก 2 เป็น 3 เลเยอร์) พร้อมใช้เทคนิค Double Dropout และการทำ Hyperparameter Sweep (Bayesian Search) เพื่อควบคุมภาวะ Overfitting และค้นหาค่าการเรียนรู้ที่เหมาะสมที่สุด
+⚙️ การปรับแต่ง Classifier : เพื่อเพิ่มความสามารถในการเรียนรู้ลักษณะ Topping ที่ซับซ้อน ได้มีการปรับโครงสร้างส่วนท้ายของโมเดล (Fine-tuning) โดยเพิ่มความลึกของ Linear Layer (เช่น MobileNet เปลี่ยนจาก 2 เป็น 3 เลเยอร์) พร้อมใช้เทคนิค Double Dropout และการทำ Hyperparameter Sweep (Bayesian Search) เพื่อควบคุมภาวะ Overfitting และค้นหาค่าการเรียนรู้ที่เหมาะสมที่สุด
 
-🔍 การวิเคราะห์ด้วย Grad-CAM และทางออกในอนาคต: เทคนิค Explainable AI เผยให้เห็นว่าโมเดลส่วนใหญ่โฟกัสที่ Topping หลัก (เช่น สับปะรด หรือ วงกลมสีแดง) แต่พบความผิดปกติในหน้า Seafood ที่จุดโฟกัสไปอยู่ที่ขอบภาพ จึงนำไปสู่ข้อเสนอแนะในการปรับปรุงด้วย Center-Weighted Cropping และการใช้ Advanced Loss Function เพื่อยกระดับความแม่นยำให้เสถียรยิ่งขึ้นในระดับใช้งานจริง
+🔍 การวิเคราะห์ด้วย Grad-CAM และแนวทางการปรับปรุงในอนาคต: โมเดลส่วนใหญ่โฟกัสที่ Topping หลัก (เช่น สับปะรด หรือ วงกลมสีแดง) แต่พบความผิดปกติในหน้า Seafood ที่จุดโฟกัสไปอยู่ที่ขอบภาพ จึงมีข้อเสนอแนะในการปรับปรุงด้วย Center-Weighted Cropping และการใช้ Advanced Loss Function เพื่อปรับความแม่นยำให้เสถียรยิ่งขึ้นในระดับใช้งานจริง
 
 ---
 
@@ -35,7 +29,7 @@ Code and Dataset : https://drive.google.com/drive/folders/1lR14cJw8nPjcrKOdRpuiA
 ประกอบด้วย:
 
 - EfficientNet-B0
-- MobileNet V3L
+- MobileNet V3 Large
 - ResNet18
 - ConvNeXt-Tiny
 
@@ -73,7 +67,7 @@ Code and Dataset : https://drive.google.com/drive/folders/1lR14cJw8nPjcrKOdRpuiA
 
 ### 1.3 Data Balance / Imbalance
 
-Data set balance 250 ภาพ ต่อ class
+* Data set balance 250 ภาพ ต่อ class
 
 ---
 
@@ -174,7 +168,7 @@ train_transform = T.Compose([
 > | Backbone Model | Advantage | Use Case |
 > |---|---|---|
 > | EfficientNetB0  | Balanced Performance: สมดุลระหว่างความแม่นยำ (Accuracy) และความเร็ว (Speed) ดีมากเมื่อเทียบกับขนาดโมเดล | Image Classification ทั่วไป เช่น จำแนกสินค้า, Medical Imaging เบื้องต้น เช่น แยกภาพปกติ/ผิดปกติ, Document/Image Tagging เช่น แยกประเภทเอกสาร |
-> | MobileNet V3L  | ลดการใช้ทรัพยากรและประมวลผลได้รวดเร็ว (Efficiency) เหมาะสำหรับการใช้งานแบบ Real-time บนอุปกรณ์พกพา (Edge Devices) โดยยังคงความแม่นยำในการจำแนกภาพที่สูงและปรับจูนได้ง่าย | Real-time Image Classification สแกนหน้าถาดเพื่อคำนวณแคลอรี่หรือระบุประเภทได้ทันทีโดยไม่ต้องส่งภาพขึ้น Cloud |
+> | MobileNet V3 Large | ลดการใช้ทรัพยากรและประมวลผลได้รวดเร็ว (Efficiency) เหมาะสำหรับการใช้งานแบบ Real-time บนอุปกรณ์พกพา (Edge Devices) โดยยังคงความแม่นยำในการจำแนกภาพที่สูงและปรับจูนได้ง่าย | Real-time Image Classification สแกนหน้าถาดเพื่อคำนวณแคลอรี่หรือระบุประเภทได้ทันทีโดยไม่ต้องส่งภาพขึ้น Cloud |
 > | ResNet18  |โครงสร้างแบบ Residual Connections ช่วยให้การไหลของค่าน้ำหนัก (Gradient) ดีขึ้นเมื่อโมเดลมีความลึก แก้ปัญหา Vanishing Gradient ทำให้เทรนง่าย มีความเสถียรสูง และสกัดลักษณะเด่น (Feature) ของภาพได้ดีเยี่ยม ถือเป็นโมเดลมาตรฐานที่เชื่อถือได้และใช้ทรัพยากรระดับกลาง  |เหมาะมากสำหรับใช้เป็นโมเดลตัวตั้งต้น (Baseline) เพื่อวัดประสิทธิภาพพื้นฐานในการทดสอบสมมติฐาน หรืองานจำแนกประเภทวัตถุที่มีรายละเอียดเฉพาะกลุ่ม เช่น การจำแนกประเภทหน้าพิซซ่า เนื่องจากโมเดลมีความลึกพอที่จะเรียนรู้ลวดลายและพื้นผิวของวัตถุดิบได้ชัดเจน โดยไม่เกิดปัญหา Overfitting ง่ายจนเกินไป  |
 > | ConvNeXt-Tiny  | **High Performance**: แม่นยำระดับ Transformer แต่ทำงานเร็วและเสถียรแบบ CNN,**Modern Design**: ใช้ Large Kernel (7x7) ช่วยให้แยกแยะรายละเอียดภาพที่ซับซ้อนได้ดี,**Resource Efficient**: รุ่น Tiny น้ำหนักเบา ประมวลผลไว ไม่กินทรัพยากรเครื่อง | Real-time Recognition: ระบบคิดเงินอัตโนมัติแบบทันที |
 >
@@ -187,7 +181,7 @@ Pre-trained Model Performance Comparison (ImageNet-1K)
 > |---|---|---|---|---|
 > |ResNet|ResNet-18 |~98|69.8%| 11.7M|
 > |ConvNeXt-Tiny|ConvNeXt-Tiny |~114|82.5%|28.6M|
-> |MobileNet|MobileNetV3-L |~22|75.3%|5.5M|
+> |MobileNet|MobileNet V3 |~22|75.3%|5.5M|
 > |EfficientNet|EfficientNet-B0 |~21|77.7%|5.3M|
 
 #### Model Performance Comparison📊
@@ -200,7 +194,7 @@ Pre-trained Model Performance Comparison (ImageNet-1K)
 > | Model | Baseline <br>(Predict Pizza) | Base line <br>(4 Pizza classes) |Fine-Tuning <br>(4 Pizza classes) |
 > |:---|:---:|:---:|:---:|
 > | EfficientNetB0  | 88.0% |0.0%| 72.9% ± 1.0% |
-> | MobileNet | **89.5%** |0.0%| 80.8% ± 1.0% |
+> | MobileNet V3| **89.5%** |0.0%| 80.8% ± 1.0% |
 > | ResNet18  |86.6%  |0.0%|80.6% ± 2.1% |
 > | ConvNeXt-Tiny  | **89.5%** |0.0%| **81.5% ± 1.0%** |
 > 
@@ -221,7 +215,7 @@ Pre-trained Model Performance Comparison (ImageNet-1K)
 > | Original Backbone Model | Remove | Keep | Add |
 > |---|---|---|---|
 > | EfficientNetB0  | Classifier ทุก Layer | Features และ Avgpool Layer | Classifier Layer ทั้งชุด<br>จำนวน Layer และ Node จะใช้ WandB เป็นตัวช่วยในการหา Best Parameter |
-> | MobileNet  | Classifier ทุก Layer | Features และ Avgpool Layer  | 1.เพิ่ม linear layer จาก 2 เป็น 3 และ feature width เพื่อให้ model มีพื้นที่การเรียนรู้ที่ซับซ้อนมากขึ้น, Backbone 2 Linear Layers (960 → 1280 → 1000), Fine-tune 3 Linear Layers (960 → 1560 → 640 → 4) <br> 2. Activation function เปลี่ยนจาก Hardswish เป็น function มาตรฐาน ReLu ทำการคำนวณได้เร็วและเสถียร <br> 3. เพิ่ม Dropout เป็น 2 จุด ป้องกันไม่ให้ model จำภาพเดิม หรือ overfitting และช่วยให้ F1 score เสถียรขึ้น <br> 4. ปรับ output จาก 1000 เป็น 4 ตามจำนวน class ที่ต้องการของหน้า pizza|Feature Layer |Classifier Layer  |
+> | MobileNet V3  | Classifier ทุก Layer | Features และ Avgpool Layer  | 1.เพิ่ม linear layer จาก 2 เป็น 3 และ feature width เพื่อให้ model มีพื้นที่การเรียนรู้ที่ซับซ้อนมากขึ้น, Backbone 2 Linear Layers (960 → 1280 → 1000), Fine-tune 3 Linear Layers (960 → 1560 → 640 → 4) <br> 2. Activation function เปลี่ยนจาก Hardswish เป็น function มาตรฐาน ReLu ทำการคำนวณได้เร็วและเสถียร <br> 3. เพิ่ม Dropout เป็น 2 จุด ป้องกันไม่ให้ model จำภาพเดิม หรือ overfitting และช่วยให้ F1 score เสถียรขึ้น <br> 4. ปรับ output จาก 1000 เป็น 4 ตามจำนวน class ที่ต้องการของหน้า pizza|Feature Layer |Classifier Layer  |
 > | ResNet18  |Classifier ทุก Layer |Features และ Avgpool Layer   |เพิ่มในส่วน Linear Layer หรือ Fully Connected Layer (Classifier)ใหม่ เพื่อแยกคลาสวัตถุออกเป็น 4 Classes |Input+Feature Layer1-3 | Feature Extractor Layer4 + Classification Layer|
 > | ConvNeXt-Tiny | Classifier ทุก Layer | Features และ Avgpool Layer | เพิ่มชั้น Classifier ชุดใหม่ที่ประกอบด้วย Linear Layer, ReLU และ Dropout โดยกำหนด Output เป็น 4 คลาสตามโจทย์ |
 
@@ -240,7 +234,7 @@ Pre-trained Model Performance Comparison (ImageNet-1K)
 > |Dropout 2|-|-|**0.5**|---|✓|---|
 > |Linear Layer 3|**1024**|**4**|---|---|✓|---|
 >
-> **ตารางที่ 3.4-2** ตารางแสดงการ Add/Freeze/Unfreeze ของโมเดล - MobileNet V3L
+> **ตารางที่ 3.4-2** ตารางแสดงการ Add/Freeze/Unfreeze ของโมเดล - MobileNet V3
 > |Layer Type| In-Features | Out-Features | Activation/Regularization| Freeze | Unfreeze |Remark|
 > |---|---|---|---|---|---|---|
 > |Feature Layer<br>Original|Original |Original|Original|✓|-|---|
@@ -339,7 +333,7 @@ $$
 
 * ทุกโมเดลใช้ method "Bayes" ในการ train โมเดล
 
-> | Hyperparameter | EfficientNetB0| MobileNet | ResNet18 | ConvNeXt-Tiny |
+> | Hyperparameter | EfficientNetB0| MobileNet V3 | ResNet18 | ConvNeXt-Tiny |
 > |---|:--:|:--:|:--:|:--:|
 > | `batch_size` | 64 | 16 | 32 | 32 |
 > | `dropout` | 0.5 | 0.2 | 0.3 | 0.3 |
@@ -480,10 +474,10 @@ Validation data :
 > **รูปที่ 6.1-2** กราฟ Loss เปรียบเทียบช่วงการ Train และการ Validation ของ EfficientNetB0
 > ![image](https://hackmd.io/_uploads/rkiJtSd5Ze.png)
 
-> **รูปที่ 6.1-3** กราฟ Accuracy เปรียบเทียบช่วงการ Train และการ Validation ของ MobileNet
+> **รูปที่ 6.1-3** กราฟ Accuracy เปรียบเทียบช่วงการ Train และการ Validation ของ MobileNet V3
 >![image](https://hackmd.io/_uploads/BJB3mKFcZx.png)
 
-> **รูปที่ 6.1-4** กราฟ Loss เปรียบเทียบช่วงการ Train และการ Validation ของ MobileNet
+> **รูปที่ 6.1-4** กราฟ Loss เปรียบเทียบช่วงการ Train และการ Validation ของ MobileNet V3
 >![image](https://hackmd.io/_uploads/SkoWQtYqZl.png)
 
 > **รูปที่ 6.1-5** กราฟ Accuracy เปรียบเทียบช่วงการ Train และการ Validation ของ ResNet18
@@ -506,7 +500,7 @@ Validation data :
 > | Model | Precision | Recall | F1 | Accuracy |
 > |:---|:---:|:---:|:---:|:---:|
 > | EfficientNetB0 | 73.3% ± 1% | 72.9% ± 1% | 72.7% ± 1% | 72.9% ± 1% |
-> | MobileNet | 81.1% ± 1% | 80.8% ± 1% | 80.6% ± 1%| 80.8% ± 1%|
+> | MobileNet V3 | 81.1% ± 1% | 80.8% ± 1% | 80.6% ± 1%| 80.8% ± 1%|
 > | ResNet18 |80.5% ± 2%  |80.4% ± 2% | 80.2% ± 2% |80.4% ± 2%|
 > | ConvNeXt-Tiny |81.8% ± 1% | 81.5% ± 1%| 81.4% ± 1% | 81.5% ± 1% |
 
@@ -551,7 +545,7 @@ Validation data :
  | Model | ครั้งที่ 1 | ครั้งที่ 2 | ครั้งที่ 3 | ครั้งที่ 4 | ครั้งที่ 5 |
  |:---|:---:|:---:|:---:|:---:|:---:|
  | EfficientNetB0 | 72.2% | 70.9% | 73.1% | 74.3% | 72.8% |
- | MobileNet V3L | 81.3% |81.3% | 79.8% | 81.4% | 79.3% |
+ | MobileNet V3 | 81.3% |81.3% | 79.8% | 81.4% | 79.3% |
  | ResNet18 | 78.5% | 82.4% | 77.1% | 83.5% | 80.2% |
  | ConvNeXt-Tiny | 80.0% | 81.9% | 81.9% | 82.0% | 81.4% |
  
@@ -581,7 +575,7 @@ Validation data :
 ##### 6.3.2.2 ผลการทดสอบรายคู่ (Dunn's Test)
 
 > **ตารางที่ 6.3-2** ตารางแสดงผลการทดสอบ Dunn's Test Hypothesis
->| Model | ConvNeXt-Tiny | EfficientNetB0 | MobileNet V3L | ResNet18 |
+>| Model | ConvNeXt-Tiny | EfficientNetB0 | MobileNet V3 | ResNet18 |
 > |:---|:---:|:---:|:---:|:---:|
 > | ConvNeXt-Tiny | 1.000000 | 0.006671 | 1.000000 | 1.000000 |
 > | EfficientNetB0 | 0.006671 | 1.000000 | 0.170475 | 0.061779 |
